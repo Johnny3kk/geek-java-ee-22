@@ -12,9 +12,10 @@ public class ProductServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.setHeader("Some-Header", "Some value");
 
         getServletContext().getRequestDispatcher("/page_header_shop").include(req, resp);
+
+        resp.getWriter().println("<h1>This is Product!</h1>");
 
     }
 
