@@ -12,7 +12,7 @@
     
     <servlet-mapping>
         <servlet-name>FirstServlet</servlet-name>
-        <url-pattern>/first_servlet</url-pattern>
+        <url-pattern>/</url-pattern>
     </servlet-mapping>
 
     <servlet-mapping>
