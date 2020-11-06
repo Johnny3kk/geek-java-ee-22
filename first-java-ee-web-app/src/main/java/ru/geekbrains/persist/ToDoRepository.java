@@ -33,9 +33,17 @@ public class ToDoRepository {
         }
     }
 
+    public void delete(long id) throws SQLException {
+        try (PreparedStatement stmt = conn.prepareStatement(
+                "delete from todos where id = ?;")) {
+            stmt.setLong(1, id);
+            stmt.execute();
+        }
+    }
+
     public ToDo findById(Long id) throws SQLException {
         try (PreparedStatement stmt = conn.prepareStatement(
-                "select id, description, targetDate from todos where id = ?;")) {
+                "select id, description, targetDate from todos where id = ?")) {
             stmt.setLong(1, id);
             ResultSet rs = stmt.executeQuery();
 
@@ -49,7 +57,7 @@ public class ToDoRepository {
     public List<ToDo> findAll() throws SQLException {
         List<ToDo> res = new ArrayList<>();
         try (Statement stmt = conn.createStatement()) {
-            ResultSet rs = stmt.executeQuery( "select id, description, targetDate from todos;");
+            ResultSet rs = stmt.executeQuery( "select id, description, targetDate from todos");
 
             while (rs.next()) {
                 res.add(new ToDo(rs.getLong(1), rs.getString(2), rs.getDate(3, Calendar.getInstance()).toLocalDate()));
@@ -60,7 +68,7 @@ public class ToDoRepository {
 
     private void createTableIfNotExists(Connection conn) throws SQLException {
         try (Statement stmt = conn.createStatement()) {
-            stmt.executeQuery( "create table if not exists todos (\n" +
+            stmt.execute( "create table if not exists todos (\n" +
                     "\tid int auto_increment primary key, \n" +
                     "description varchar(25), \n" +
                     "targetDate date \n" +
