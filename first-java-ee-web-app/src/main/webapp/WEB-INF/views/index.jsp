@@ -1,5 +1,7 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="ru.geekbrains.persist.ToDoRepository" %>
 <%@ page import="ru.geekbrains.persist.ToDo" %>
+<%@ page import="java.util.List" %>
 <%@ page contentType="text/html" pageEncoding="UTF-8" %>
 <!doctype html>
 <html lang="en">
@@ -16,7 +18,6 @@
     <title>ToDo list application</title>
 </head>
 
-<% ToDoRepository toDoRepository = (ToDoRepository) request.getServletContext().getAttribute("toDoRepository"); %>
 
 <body>
 
@@ -56,21 +57,31 @@
                 </thead>
                 <tbody>
 
-                <% for (ToDo toDo : toDoRepository.findAll()) { %>
+                <c:forEach var="todo" items="${requestScope.todos}">
+<%--                <% for (ToDo toDo : (List<ToDo>) request.getAttribute("todos")) { %>--%>
 
                 <tr>
-                    <th scope="row"><%= toDo.getId() %></th>
-                    <td><%= toDo.getDescription() %></td>
-                    <td>Cristina</td>
-                    <td><%= toDo.getTargetDate() %></td>
+                    <th scope="row">
+                        <c:out value="${todo.id}"/>
+<%--                        <%= toDo.getId() %>--%>
+                    </th>
+                    <td>
+                        <c:out value="${todo.description}"/>
+<%--                        <%= toDo.getDescription() %>--%>
+                    </td>
+                    <td>User</td>
+                    <td>
+                        <c:out value="${todo.targetDate}"/>
+<%--                        <%= toDo.getTargetDate() %>--%>
+                    </td>
                     <td>
                         <a class="btn btn-success" href="todo.html"><i class="fas fa-edit"></i></a>
                         <a class="btn btn-danger" href="#"><i class="far fa-trash-alt"></i></a>
                     </td>
                 </tr>
 
-                <% } %>
-
+<%--                <% } %>--%>
+                </c:forEach>
                 </tbody>
             </table>
         </div>
