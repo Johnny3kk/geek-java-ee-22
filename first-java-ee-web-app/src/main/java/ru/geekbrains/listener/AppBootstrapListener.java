@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import ru.geekbrains.persist.ToDo;
 import ru.geekbrains.persist.ToDoRepository;
+import ru.geekbrains.shop.persist.ProductRepository;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
@@ -40,6 +41,10 @@ public class AppBootstrapListener implements ServletContextListener {
                 toDoRepository.insert(new ToDo(-1L, "Second", LocalDate.now().plusDays(1)));
                 toDoRepository.insert(new ToDo(-1L, "Third", LocalDate.now().plusDays(2)));
             }
+
+            ProductRepository productRepository = new ProductRepository(connection);
+            sc.setAttribute("productRepository", productRepository);
+
         } catch (SQLException ex) {
             logger.error("Can't initialize JDBC connection", ex);
         }
