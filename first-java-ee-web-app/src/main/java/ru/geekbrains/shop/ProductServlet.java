@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
-@WebServlet(urlPatterns = "/products/*")
+@WebServlet(urlPatterns = {"/products", "/products/product"})
 public class ProductServlet extends HttpServlet {
 
     private ProductRepository productRepository;
