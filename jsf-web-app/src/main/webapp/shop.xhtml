@@ -4,13 +4,13 @@
       xmlns:ui="http://java.sun.com/jsf/facelets">
 
 <ui:include src="WEB-INF/views/head.xhtml">
-    <ui:param name="title" value="ToDo List"/>
+    <ui:param name="title" value="Product List"/>
 </ui:include>
 
 <h:body>
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">ToDo</a>
+        <a class="navbar-brand" href="#">Shop</a>
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -28,45 +28,48 @@
 
     <div class="container">
         <div class="row py-2">
-            <h:form id="toDoForm">
+            <h:form id="productForm">
                 <div class="col-12">
-                    <h:commandButton value="Add Todo" styleClass="btn btn-primary"
-                                     action="#{toDoController.createTodo()}"/>
+                    <h:commandButton value="Add Product" styleClass="btn btn-primary"
+                                     action="#{productController.createProduct()}"/>
                 </div>
 
                 <div class="col-12">
 
-                    <h:dataTable value="#{toDoController.allTodos}" var="todo"
+                    <h:dataTable value="#{productController.allProducts}" var="product"
                                  styleClass="table table-bordered my-2">
                         <h:column>
                             <f:facet name="header">Id</f:facet>
-                            #{todo.id}
+                            #{product.id}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Name</f:facet>
+                            #{product.name}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Brand</f:facet>
+                            #{product.brand}
                         </h:column>
                         <h:column>
                             <f:facet name="header">Description</f:facet>
-                            #{todo.description}
+                            #{product.description}
                         </h:column>
                         <h:column>
-                            <f:facet name="header">Target date</f:facet>
-                            #{todo.targetDate}
+                            <f:facet name="header">Cost</f:facet>
+                            #{product.cost}
                         </h:column>
                         <h:column>
                             <f:facet name="header">Action</f:facet>
 
                             <h:commandButton value="Edit" styleClass="btn btn-success"
-                                             action="#{toDoController.editTodo(todo)}"/>
+                                             action="#{productController.editProduct(product)}"/>
                             <h:commandButton value="Delete" styleClass="btn btn-danger"
-                                             action="#{toDoController.deleteTodo(todo)}">
-                                <f:ajax event="click" render="toDoForm"/>
+                                             action="#{productController.deleteProduct(product)}">
+                                <f:ajax event="click" render="productForm"/>
                             </h:commandButton>
 
                         </h:column>
                     </h:dataTable>
-                </div>
-
-                <div class="col-12">
-                    <h:commandButton value="SHOP" styleClass="btn btn-primary"
-                                     action="#{productController.goShopping()}"/>
                 </div>
             </h:form>
         </div>
