@@ -13,6 +13,7 @@
     <modules>
 
         <module>first-java-ee-web-app</module>
+        <module>jsf-web-app</module>
     </modules>
 
 
