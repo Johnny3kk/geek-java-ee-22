@@ -4,13 +4,13 @@
       xmlns:ui="http://java.sun.com/jsf/facelets">
 
 <ui:include src="WEB-INF/views/head.xhtml">
-    <ui:param name="title" value="Product List"/>
+    <ui:param name="title" value="My cart"/>
 </ui:include>
 
 <h:body>
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">Shop</a>
+        <a class="navbar-brand" href="#">Cart</a>
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -20,7 +20,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">List</a>
+                    <a class="nav-link" href="#">My check</a>
                 </li>
             </ul>
         </div>
@@ -30,13 +30,13 @@
         <div class="row py-2">
             <h:form id="productForm">
                 <div class="col-12">
-                    <h:commandButton value="Add Product" styleClass="btn btn-primary"
-                                     action="#{productController.createProduct()}"/>
+                    <h:commandButton value="Back to the Shop" styleClass="btn btn-primary"
+                                     action="#{productController.goShopping()}"/>
                 </div>
 
                 <div class="col-12">
 
-                    <h:dataTable value="#{productController.allProducts}" var="product"
+                    <h:dataTable value="#{cartController.getCart()}" var="product"
                                  styleClass="table table-bordered my-2">
                         <h:column>
                             <f:facet name="header">Id</f:facet>
@@ -61,22 +61,13 @@
                         <h:column>
                             <f:facet name="header">Action</f:facet>
 
-                            <h:commandButton value="+" styleClass="btn btn-success"
-                                             action="#{cartController.addInCart(product)}"/>
-                            <h:commandButton value="Edit" styleClass="btn btn-warning"
-                                             action="#{productController.editProduct(product)}"/>
-                            <h:commandButton value="Delete" styleClass="btn btn-danger"
-                                             action="#{productController.deleteProduct(product)}">
+                            <h:commandButton value="Remove" styleClass="btn btn-danger"
+                                             action="#{cartController.remove(product)}">
                                 <f:ajax event="click" render="productForm"/>
                             </h:commandButton>
 
                         </h:column>
                     </h:dataTable>
-                </div>
-
-                <div class="col-12">
-                    <h:commandButton value="Check out my cart" styleClass="btn btn-dark"
-                                     action="#{cartController.goChecking()}" />
                 </div>
             </h:form>
         </div>
