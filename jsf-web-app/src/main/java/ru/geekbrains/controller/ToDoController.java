@@ -1,9 +1,12 @@
 package ru.geekbrains.controller;
 
 import ru.geekbrains.persist.ToDo;
+import ru.geekbrains.persist.ToDoCategory;
+import ru.geekbrains.persist.ToDoCategoryRepository;
 import ru.geekbrains.persist.ToDoRepository;
 
 import javax.enterprise.context.SessionScoped;
+import javax.faces.event.ComponentSystemEvent;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
@@ -17,9 +20,21 @@ public class ToDoController implements Serializable {
     @Inject
     private ToDoRepository toDoRepository;
 
+    @Inject
+    private ToDoCategoryRepository toDoCategoryRepository;
+
     private ToDo todo;
 
-    public List<ToDo> getAllTodos() throws SQLException {
+    private List<ToDo> todos;
+
+    private List<ToDoCategory> toDoCategories;
+
+    public void preloadData(ComponentSystemEvent componentSystemEvent) {
+        this.todos = toDoRepository.findAll();
+        this.toDoCategories = toDoCategoryRepository.findAll();
+    }
+
+    public List<ToDo> getAllTodos() {
         return toDoRepository.findAll();
     }
 
@@ -36,7 +51,7 @@ public class ToDoController implements Serializable {
         return "/todo.xhtml?faces-redirect=true";
     }
 
-    public void deleteTodo(ToDo todo) throws SQLException {
+    public void deleteTodo(ToDo todo) {
         toDoRepository.delete(todo.getId());
     }
 
@@ -52,5 +67,9 @@ public class ToDoController implements Serializable {
     public String createTodo() {
         this.todo = new ToDo();
         return "/todo.xhtml?faces-redirect=true";
+    }
+
+    public List<ToDoCategory> getToDoCategories() {
+        return toDoCategories;
     }
 }
