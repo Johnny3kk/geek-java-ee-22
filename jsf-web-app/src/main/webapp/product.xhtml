@@ -60,6 +60,11 @@
                                      value="#{productController.product.cost}"
                                      placeholder="Enter cost"/>
                     </div>
+                    <div class="form-group">
+                        <label for="boxing">Boxing</label>
+                        <h:selectOneMenu class="form-control" id="brand" value="#{productController.product.boxing}" />
+
+                    </div>
 
                     <h:commandButton value="Submit" styleClass="btn btn-primary" action="#{productController.saveProduct()}"/>
                 </h:form>

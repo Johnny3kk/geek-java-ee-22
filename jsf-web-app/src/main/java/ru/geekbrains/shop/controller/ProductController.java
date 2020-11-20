@@ -1,5 +1,7 @@
 package ru.geekbrains.shop.controller;
 
+import ru.geekbrains.shop.persist.Boxing;
+import ru.geekbrains.shop.persist.BoxingRepository;
 import ru.geekbrains.shop.persist.Product;
 import ru.geekbrains.shop.persist.ProductRepository;
 
@@ -17,10 +19,19 @@ public class ProductController implements Serializable {
     @Inject
     private ProductRepository productRepository;
 
+    @Inject
+    private BoxingRepository boxingRepository;
+
     private Product product;
 
-    public List<Product> getAllProducts() throws SQLException {
+    private Boxing boxing;
+
+    public List<Product> getAllProducts() {
         return productRepository.findAll();
+    }
+
+    public List<Boxing> getAllBoxing() {
+        return boxingRepository.findAll();
     }
 
     public Product getProduct() {
@@ -36,11 +47,11 @@ public class ProductController implements Serializable {
         return "product.xhtml?faces-redirect=true";
     }
 
-    public void deleteProduct(Product product) throws SQLException {
+    public void deleteProduct(Product product) {
         productRepository.delete(product.getId());
     }
 
-    public String saveProduct() throws SQLException {
+    public String saveProduct() {
         if (product.getId() == null) {
             productRepository.insert(product);
         } else {

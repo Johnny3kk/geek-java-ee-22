@@ -1,14 +1,30 @@
 package ru.geekbrains.shop.persist;
 
+import javax.persistence.*;
 import java.math.BigDecimal;
 
+@Entity
+@Table(name = "products")
 public class Product {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(nullable = false)
     private String name;
+
+    @Column(nullable = false)
     private String brand;
+
+    @Column(nullable = false)
     private String description;
+
+    @Column(nullable = false)
     private BigDecimal cost;
+
+    @ManyToOne
+    private Boxing boxing;
 
     public Product() {
     }
@@ -59,5 +75,13 @@ public class Product {
 
     public void setCost(BigDecimal cost) {
         this.cost = cost;
+    }
+
+    public Boxing getBoxing() {
+        return boxing;
+    }
+
+    public void setBoxing(Boxing boxing) {
+        this.boxing = boxing;
     }
 }
