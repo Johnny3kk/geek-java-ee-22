@@ -31,11 +31,11 @@ public class ToDoController implements Serializable {
 
     public void preloadData(ComponentSystemEvent componentSystemEvent) {
         this.todos = toDoRepository.findAll();
-        this.toDoCategories = toDoCategoryRepository.findAll();
+
     }
 
     public List<ToDo> getAllTodos() {
-        return toDoRepository.findAll();
+        return todos;
     }
 
     public ToDo getTodo() {

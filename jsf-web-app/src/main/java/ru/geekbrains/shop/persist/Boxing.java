@@ -54,4 +54,5 @@ public class Boxing {
     public void setProducts(List<Product> products) {
         this.products = products;
     }
+
 }

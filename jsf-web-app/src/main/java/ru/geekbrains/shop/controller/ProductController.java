@@ -6,6 +6,7 @@ import ru.geekbrains.shop.persist.Product;
 import ru.geekbrains.shop.persist.ProductRepository;
 
 import javax.enterprise.context.SessionScoped;
+import javax.faces.event.ComponentSystemEvent;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
@@ -26,8 +27,15 @@ public class ProductController implements Serializable {
 
     private Boxing boxing;
 
+    private List<Product> products;
+
+    public void preloadData(ComponentSystemEvent componentSystemEvent) {
+        this.products = productRepository.findAll();
+
+    }
+
     public List<Product> getAllProducts() {
-        return productRepository.findAll();
+        return products;
     }
 
     public List<Boxing> getAllBoxing() {
@@ -40,6 +48,14 @@ public class ProductController implements Serializable {
 
     public void setProduct(Product product) {
         this.product = product;
+    }
+
+    public Boxing getBoxing() {
+        return boxing;
+    }
+
+    public void setBoxing(Boxing boxing) {
+        this.boxing = boxing;
     }
 
     public String editProduct(Product product) {

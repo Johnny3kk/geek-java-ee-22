@@ -62,7 +62,9 @@
                     </div>
                     <div class="form-group">
                         <label for="boxing">Boxing</label>
-                        <h:selectOneMenu class="form-control" id="brand" value="#{productController.product.boxing}" />
+                        <h:selectOneMenu class="form-control" id="boxing" value="#{productController.boxing}">
+                            <f:selectItems value="#{productController.allBoxing}" var="item" itemLabel="${item.name}"/>
+                        </h:selectOneMenu>
 
                     </div>
 
