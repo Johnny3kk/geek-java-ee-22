@@ -1,9 +1,8 @@
 package ru.geekbrains.controller;
 
-import ru.geekbrains.persist.ToDo;
-import ru.geekbrains.persist.ToDoCategory;
-import ru.geekbrains.persist.ToDoCategoryRepository;
-import ru.geekbrains.persist.ToDoRepository;
+import ru.geekbrains.persist.*;
+import ru.geekbrains.service.ToDoRepr;
+import ru.geekbrains.service.ToDoServiceLocal;
 
 import javax.enterprise.context.SessionScoped;
 import javax.faces.event.ComponentSystemEvent;
@@ -18,54 +17,54 @@ import java.util.List;
 public class ToDoController implements Serializable {
 
     @Inject
-    private ToDoRepository toDoRepository;
+    private ToDoServiceLocal toDoService;
 
     @Inject
     private ToDoCategoryRepository toDoCategoryRepository;
 
-    private ToDo todo;
+    private ToDoRepr todo;
 
-    private List<ToDo> todos;
+    private List<ToDoRepr> todos;
 
     private List<ToDoCategory> toDoCategories;
 
     public void preloadData(ComponentSystemEvent componentSystemEvent) {
-        this.todos = toDoRepository.findAll();
-
+        this.todos = toDoService.findAll();
+        this.toDoCategories = toDoCategoryRepository.findAll();
     }
 
-    public List<ToDo> getAllTodos() {
+    public List<ToDoRepr> getAllTodos() {
         return todos;
     }
 
-    public ToDo getTodo() {
+    public ToDoRepr getTodo() {
         return todo;
     }
 
-    public void setTodo(ToDo todo) {
+    public void setTodo(ToDoRepr todo) {
         this.todo = todo;
     }
 
-    public String editTodo(ToDo todo) {
+    public String editTodo(ToDoRepr todo) {
         this.todo = todo;
         return "/todo.xhtml?faces-redirect=true";
     }
 
-    public void deleteTodo(ToDo todo) {
-        toDoRepository.delete(todo.getId());
+    public void deleteTodo(ToDoRepr todo) {
+        toDoService.delete(todo.getId());
     }
 
     public String saveTodo() throws SQLException {
         if (todo.getId() == null) {
-            toDoRepository.insert(todo);
+            toDoService.insert(todo);
         } else {
-            toDoRepository.update(this.todo);
+            toDoService.update(this.todo);
         }
         return "/index.xhtml?faces-redirect=true";
     }
 
     public String createTodo() {
-        this.todo = new ToDo();
+        this.todo = new ToDoRepr();
         return "/todo.xhtml?faces-redirect=true";
     }
 

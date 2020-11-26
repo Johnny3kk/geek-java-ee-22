@@ -23,10 +23,11 @@ public class ToDo {
     public ToDo() {
     }
 
-    public ToDo(Long id, String description, LocalDate targetDate) {
+    public ToDo(Long id, String description, LocalDate targetDate, ToDoCategory toDoCategory) {
         this.id = id;
         this.description = description;
         this.targetDate = targetDate;
+        this.toDoCategory = toDoCategory;
     }
 
     public Long getId() {

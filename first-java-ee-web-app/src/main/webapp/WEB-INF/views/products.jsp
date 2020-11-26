@@ -1,5 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page import="ru.geekbrains.persist.ToDoRepository" %>
+<%@ page import="ru.geekbrains.persist.ToDoRepositoryImpl" %>
 <%@ page import="ru.geekbrains.persist.ToDo" %>
 <%@ page import="java.util.List" %>
 <%@ page contentType="text/html" pageEncoding="UTF-8" %>
