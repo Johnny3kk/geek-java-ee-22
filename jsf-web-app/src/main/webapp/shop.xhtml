@@ -68,7 +68,7 @@
                             <f:facet name="header">Action</f:facet>
 
                             <h:commandButton value="+" styleClass="btn btn-success"
-                                             action="#{cartController.addInCart(product)}"/>
+                                             action="#{cartControllerEjb.addInCart(product)}"/>
                             <h:commandButton value="Edit" styleClass="btn btn-warning"
                                              action="#{productController.editProduct(product)}"/>
                             <h:commandButton value="Delete" styleClass="btn btn-danger"
@@ -82,7 +82,7 @@
 
                 <div class="col-12">
                     <h:commandButton value="Check out my cart" styleClass="btn btn-dark"
-                                     action="#{cartController.goChecking()}" />
+                                     action="#{cartControllerEjb.goChecking()}" />
                 </div>
             </h:form>
         </div>

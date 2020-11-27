@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.concurrent.Future;
 
 @Stateless
-public class ToDoServiceImpl implements ToDoServiceLocal {
+public class ToDoServiceImpl implements ToDoServiceLocal, ToDoServiceRemote {
 
     private static final Logger logger = LoggerFactory.getLogger(ToDoServiceImpl.class);
 

@@ -36,7 +36,7 @@
 
                 <div class="col-12">
 
-                    <h:dataTable value="#{cartController.getCart()}" var="product"
+                    <h:dataTable value="#{cartControllerEjb.getCart()}" var="product"
                                  styleClass="table table-bordered my-2">
                         <h:column>
                             <f:facet name="header">Id</f:facet>
@@ -62,7 +62,7 @@
                             <f:facet name="header">Action</f:facet>
 
                             <h:commandButton value="Remove" styleClass="btn btn-danger"
-                                             action="#{cartController.remove(product)}">
+                                             action="#{cartControllerEjb.remove(product)}">
                                 <f:ajax event="click" render="productForm"/>
                             </h:commandButton>
 
