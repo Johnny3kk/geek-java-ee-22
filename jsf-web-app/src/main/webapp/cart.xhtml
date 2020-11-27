@@ -36,7 +36,7 @@
 
                 <div class="col-12">
 
-                    <h:dataTable value="#{cartControllerEjb.getCart()}" var="product"
+                    <h:dataTable value="#{cartControllerEjb.all}" var="product"
                                  styleClass="table table-bordered my-2">
                         <h:column>
                             <f:facet name="header">Id</f:facet>
@@ -57,6 +57,10 @@
                         <h:column>
                             <f:facet name="header">Cost</f:facet>
                             #{product.cost}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Boxing</f:facet>
+                            #{empty product.boxingName ? "no category" : product.boxingName}
                         </h:column>
                         <h:column>
                             <f:facet name="header">Action</f:facet>
