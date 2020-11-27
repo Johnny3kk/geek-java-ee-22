@@ -1,6 +1,5 @@
 package ru.geekbrains.service;
 
-import ru.geekbrains.persist.ToDo;
 import ru.geekbrains.persist.ToDoCategory;
 
 import javax.validation.constraints.NotEmpty;

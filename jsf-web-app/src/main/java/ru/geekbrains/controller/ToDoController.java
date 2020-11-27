@@ -54,7 +54,7 @@ public class ToDoController implements Serializable {
         toDoService.delete(todo.getId());
     }
 
-    public String saveTodo() throws SQLException {
+    public String saveTodo() {
         if (todo.getId() == null) {
             toDoService.insert(todo);
         } else {

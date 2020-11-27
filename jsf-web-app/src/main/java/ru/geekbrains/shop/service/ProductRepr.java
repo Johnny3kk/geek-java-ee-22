@@ -1,41 +1,43 @@
-package ru.geekbrains.shop.persist;
+package ru.geekbrains.shop.service;
 
-import javax.persistence.*;
+import ru.geekbrains.shop.persist.Boxing;
+
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 import java.math.BigDecimal;
 
-@Entity
-@Table(name = "products")
-public class Product {
+public class ProductRepr implements Serializable {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
+    @NotEmpty
     private String name;
 
-    @Column(nullable = false)
+    @NotEmpty
     private String brand;
 
-    @Column(nullable = false)
+    @NotEmpty
     private String description;
 
-    @Column(nullable = false)
+    @NotNull
     private BigDecimal cost;
 
-    @ManyToOne
-    private Boxing boxing;
+    private Long boxingId;
 
-    public Product() {
+    private String boxingName;
+
+    public ProductRepr() {
     }
 
-    public Product(Long id, String name, String brand, String description, BigDecimal cost, Boxing boxing) {
+    public ProductRepr(Long id, @NotEmpty String name, @NotEmpty String brand, @NotEmpty String description, @NotNull BigDecimal cost, Boxing boxing) {
         this.id = id;
         this.name = name;
         this.brand = brand;
         this.description = description;
         this.cost = cost;
-        this.boxing = boxing;
+        this.boxingId = boxing != null ? boxing.getId() : null;
+        this.boxingName = boxing != null ? boxing.getName() : null;
     }
 
     public Long getId() {
@@ -78,11 +80,19 @@ public class Product {
         this.cost = cost;
     }
 
-    public Boxing getBoxing() {
-        return boxing;
+    public Long getBoxingId() {
+        return boxingId;
     }
 
-    public void setBoxing(Boxing boxing) {
-        this.boxing = boxing;
+    public void setBoxingId(Long boxingId) {
+        this.boxingId = boxingId;
+    }
+
+    public String getBoxingName() {
+        return boxingName;
+    }
+
+    public void setBoxingName(String boxingName) {
+        this.boxingName = boxingName;
     }
 }

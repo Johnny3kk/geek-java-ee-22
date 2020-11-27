@@ -62,7 +62,7 @@
                         </h:column>
                         <h:column>
                             <f:facet name="header">Boxing</f:facet>
-                            #{product.boxing.name}
+                            #{empty product.boxingName ? "no category" : product.boxingName}
                         </h:column>
                         <h:column>
                             <f:facet name="header">Action</f:facet>

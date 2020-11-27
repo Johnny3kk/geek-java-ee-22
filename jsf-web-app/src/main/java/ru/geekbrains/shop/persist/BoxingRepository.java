@@ -1,26 +1,12 @@
 package ru.geekbrains.shop.persist;
 
-import ru.geekbrains.persist.ToDoCategory;
-
-import javax.enterprise.context.ApplicationScoped;
-import javax.inject.Named;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
+import javax.ejb.Local;
 import java.util.List;
 
-@Named
-@ApplicationScoped
-public class BoxingRepository {
+@Local
+public interface BoxingRepository {
 
-    @PersistenceContext(unitName = "ds")
-    private EntityManager em;
+    Boxing findById(Long id);
 
-    public Boxing findById(Long id) {
-        return em.find(Boxing.class, id);
-    }
-
-    public List<Boxing> findAll() {
-        return em.createQuery("from Boxing b", Boxing.class)
-                .getResultList();
-    }
+    List<Boxing> findAll();
 }

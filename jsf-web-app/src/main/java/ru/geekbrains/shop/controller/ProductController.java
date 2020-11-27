@@ -1,16 +1,14 @@
 package ru.geekbrains.shop.controller;
 
-import ru.geekbrains.shop.persist.Boxing;
-import ru.geekbrains.shop.persist.BoxingRepository;
-import ru.geekbrains.shop.persist.Product;
-import ru.geekbrains.shop.persist.ProductRepository;
+import ru.geekbrains.shop.persist.*;
+import ru.geekbrains.shop.service.ProductRepr;
+import ru.geekbrains.shop.service.ProductServiceLocal;
 
 import javax.enterprise.context.SessionScoped;
 import javax.faces.event.ComponentSystemEvent;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
-import java.sql.SQLException;
 import java.util.List;
 
 @Named
@@ -18,66 +16,59 @@ import java.util.List;
 public class ProductController implements Serializable {
 
     @Inject
-    private ProductRepository productRepository;
+    private ProductServiceLocal productService;
 
     @Inject
     private BoxingRepository boxingRepository;
 
-    private Product product;
+    private ProductRepr product;
 
-    private Boxing boxing;
+    private List<ProductRepr> products;
 
-    private List<Product> products;
+    private List<Boxing> boxings;
 
     public void preloadData(ComponentSystemEvent componentSystemEvent) {
-        this.products = productRepository.findAll();
-
+        this.products = productService.findAll();
+        this.boxings = boxingRepository.findAll();
     }
 
-    public List<Product> getAllProducts() {
+    public List<ProductRepr> getAllProducts() {
         return products;
     }
 
-    public List<Boxing> getAllBoxing() {
-        return boxingRepository.findAll();
+    public List<Boxing> getBoxings() {
+        return boxings;
     }
 
-    public Product getProduct() {
+    public ProductRepr getProduct() {
         return product;
     }
 
-    public void setProduct(Product product) {
+    public void setProduct(ProductRepr product) {
         this.product = product;
     }
 
-    public Boxing getBoxing() {
-        return boxing;
-    }
 
-    public void setBoxing(Boxing boxing) {
-        this.boxing = boxing;
-    }
-
-    public String editProduct(Product product) {
+    public String editProduct(ProductRepr product) {
         this.product = product;
         return "product.xhtml?faces-redirect=true";
     }
 
-    public void deleteProduct(Product product) {
-        productRepository.delete(product.getId());
+    public void deleteProduct(ProductRepr product) {
+        productService.delete(product.getId());
     }
 
     public String saveProduct() {
         if (product.getId() == null) {
-            productRepository.insert(product);
+            productService.insert(product);
         } else {
-            productRepository.update(this.product);
+            productService.update(this.product);
         }
         return "shop.xhtml?faces-redirect=true";
     }
 
     public String createProduct() {
-        this.product = new Product();
+        this.product = new ProductRepr();
         return "product.xhtml?faces-redirect=true";
     }
 

@@ -61,10 +61,15 @@
                                      placeholder="Enter cost"/>
                     </div>
                     <div class="form-group">
-                        <label for="boxing">Boxing</label>
-                        <h:selectOneMenu class="form-control" id="boxing" value="#{productController.boxing}">
-                            <f:selectItems value="#{productController.allBoxing}" var="item" itemLabel="${item.name}"/>
-                        </h:selectOneMenu>
+                        <h:outputLabel value="Category"/>
+                        <h:selectOneListbox size="1" styleClass="form-control" id="todoCategory"
+                                            value="#{productController.product.boxingId}">
+                            <f:selectItems value="#{productController.boxings}"
+                                           var="box"
+                                           itemValue="#{box.id}"
+                                           itemLabel="#{box.name}"
+                                           itemLabelEscaped="true"/>
+                        </h:selectOneListbox>
 
                     </div>
 

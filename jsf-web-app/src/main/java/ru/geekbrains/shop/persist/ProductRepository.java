@@ -1,41 +1,24 @@
 package ru.geekbrains.shop.persist;
 
-import javax.enterprise.context.ApplicationScoped;
-import javax.inject.Named;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import java.sql.SQLException;
+import ru.geekbrains.shop.service.ProductRepr;
+
+import javax.ejb.Local;
 import java.util.List;
 
-@Named
-@ApplicationScoped
-public class ProductRepository {
+@Local
+public interface ProductRepository {
 
-    @PersistenceContext(unitName = "ds")
-    private EntityManager em;
+    void insert(Product product);
 
-    public void insert(Product product) {
-        em.persist(product);
-    }
+    void update(Product product);
 
-    public void update(Product product) {
-        em.merge(product);
-    }
+    void delete(long id);
 
-    public void delete(long id) {
-        Product product = em.find(Product.class, id);
-        if (product != null) {
-            em.remove(product);
-        }
-    }
+    Product findById(Long id);
 
-    public Product findById(Long id) {
-       return em.find(Product.class, id);
-    }
+    List<Product> findAll();
 
-    public List<Product> findAll() {
-        return em.createQuery("from Product p", Product.class)
-                .getResultList();
-    }
+    ProductRepr findProductReprById(Long id);
 
+    List<ProductRepr> findAllProductRepr();
 }
