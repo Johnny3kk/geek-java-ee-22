@@ -12,10 +12,12 @@ import javax.ejb.Asynchronous;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.inject.Inject;
+import javax.jws.WebService;
 import java.util.List;
 import java.util.concurrent.Future;
 
 @Stateless
+@WebService(endpointInterface = "ru.geekbrains.service.ToDoServiceWs", serviceName = "ToDoService")
 public class ToDoServiceImpl implements ToDoServiceLocal, ToDoServiceRemote {
 
     private static final Logger logger = LoggerFactory.getLogger(ToDoServiceImpl.class);
