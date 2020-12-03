@@ -1,0 +1,38 @@
+GET http://localhost:8080/jsf-web-app/api/v1/shop/all
+
+###
+
+GET http://localhost:8080/jsf-web-app/api/v1/shop/11
+
+###
+
+POST http://localhost:8080/jsf-web-app/api/v1/shop
+Content-Type: application/json
+
+{
+  "boxingId": 2,
+  "boxingName": "OEM",
+  "brand": "Oklick",
+  "cost": 15,
+  "description": "mouse",
+  "name": "Hunter"
+}
+
+###
+
+PUT http://localhost:8080/jsf-web-app/api/v1/shop
+Content-Type: application/json
+
+{
+  "boxingId": 2,
+  "boxingName": "OEM",
+  "brand": "AMD",
+  "cost": 669,
+  "description": "graphics card",
+  "id": 8,
+  "name": "rx 6800xt"
+}
+
+###
+
+DELETE http://localhost:8080/jsf-web-app/api/v1/shop/11

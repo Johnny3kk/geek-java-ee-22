@@ -6,6 +6,7 @@ import ru.geekbrains.shop.persist.Boxing;
 import ru.geekbrains.shop.persist.BoxingRepository;
 import ru.geekbrains.shop.persist.Product;
 import ru.geekbrains.shop.persist.ProductRepository;
+import ru.geekbrains.shop.rest.ProductServiceRs;
 
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
@@ -15,7 +16,7 @@ import java.util.List;
 
 @Stateless
 @WebService(endpointInterface = "ru.geekbrains.shop.service.ProductServiceWs", serviceName = "ProductService")
-public class ProductServiceImpl implements ProductServiceLocal, ProductServiceWs {
+public class ProductServiceImpl implements ProductServiceLocal, ProductServiceWs, ProductServiceRs {
 
     private static final Logger logger = LoggerFactory.getLogger(ProductServiceImpl.class);
 
