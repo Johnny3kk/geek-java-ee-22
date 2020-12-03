@@ -11,6 +11,10 @@
 
     <f:event listener="#{productController.preloadData}" type="preRenderView"/>
 
+    <ui:include src="WEB-INF/views/navigation.xhtml">
+        <ui:param name="pageName" value="Shop"/>
+    </ui:include>
+
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="#">Shop</a>
 
