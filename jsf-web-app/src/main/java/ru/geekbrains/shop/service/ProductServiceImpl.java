@@ -2,7 +2,6 @@ package ru.geekbrains.shop.service;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import ru.geekbrains.service.ToDoServiceImpl;
 import ru.geekbrains.shop.persist.Boxing;
 import ru.geekbrains.shop.persist.BoxingRepository;
 import ru.geekbrains.shop.persist.Product;
@@ -11,10 +10,12 @@ import ru.geekbrains.shop.persist.ProductRepository;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.inject.Inject;
+import javax.jws.WebService;
 import java.util.List;
 
 @Stateless
-public class ProductServiceImpl implements ProductServiceLocal {
+@WebService(endpointInterface = "ru.geekbrains.shop.service.ProductServiceWs", serviceName = "ProductService")
+public class ProductServiceImpl implements ProductServiceLocal, ProductServiceWs {
 
     private static final Logger logger = LoggerFactory.getLogger(ProductServiceImpl.class);
 
