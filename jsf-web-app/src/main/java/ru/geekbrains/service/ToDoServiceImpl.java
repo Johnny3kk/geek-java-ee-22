@@ -6,6 +6,7 @@ import ru.geekbrains.persist.ToDo;
 import ru.geekbrains.persist.ToDoCategory;
 import ru.geekbrains.persist.ToDoCategoryRepository;
 import ru.geekbrains.persist.ToDoRepository;
+import ru.geekbrains.rest.ToDoServiceRs;
 
 import javax.ejb.AsyncResult;
 import javax.ejb.Asynchronous;
@@ -18,7 +19,7 @@ import java.util.concurrent.Future;
 
 @Stateless
 @WebService(endpointInterface = "ru.geekbrains.service.ToDoServiceWs", serviceName = "ToDoService")
-public class ToDoServiceImpl implements ToDoServiceLocal, ToDoServiceRemote {
+public class ToDoServiceImpl implements ToDoServiceLocal, ToDoServiceRemote, ToDoServiceWs, ToDoServiceRs {
 
     private static final Logger logger = LoggerFactory.getLogger(ToDoServiceImpl.class);
 
