@@ -5,9 +5,11 @@ import ru.geekbrains.service.ToDoRepr;
 import ru.geekbrains.service.ToDoServiceLocal;
 
 import javax.enterprise.context.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.faces.event.ComponentSystemEvent;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.servlet.http.HttpSession;
 import java.io.Serializable;
 import java.sql.SQLException;
 import java.util.List;
@@ -70,5 +72,10 @@ public class ToDoController implements Serializable {
 
     public List<ToDoCategory> getToDoCategories() {
         return toDoCategories;
+    }
+
+    public String logout() {
+        ((HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false)).invalidate();
+        return "/index.xhtml?faces-redirect=true";
     }
 }
