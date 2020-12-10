@@ -37,7 +37,8 @@
             <h:form id="productForm">
                 <div class="col-12">
                     <h:commandButton value="Add Product" styleClass="btn btn-primary"
-                                     action="#{productController.createProduct()}"/>
+                                     action="#{productController.createProduct()}"
+                                     rendered="#{request.isUserInRole('MANAGER')}"/>
                 </div>
 
                 <div class="col-12">
@@ -74,9 +75,11 @@
                             <h:commandButton value="+" styleClass="btn btn-success"
                                              action="#{cartControllerEjb.add(product)}"/>
                             <h:commandButton value="Edit" styleClass="btn btn-warning"
-                                             action="#{productController.editProduct(product)}"/>
+                                             action="#{productController.editProduct(product)}"
+                                             rendered="#{request.isUserInRole('MANAGER')}"/>
                             <h:commandButton value="Delete" styleClass="btn btn-danger"
-                                             action="#{productController.deleteProduct(product)}">
+                                             action="#{productController.deleteProduct(product)}"
+                                             rendered="#{request.isUserInRole('MANAGER')}">
                                 <f:ajax event="click" render="productForm"/>
                             </h:commandButton>
 

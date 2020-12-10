@@ -22,11 +22,11 @@
             </li>
 
             <li class="nav-item #{pageName == 'User' ? 'active' : ''}">
-                <h:link rendered="#{request.isUserInRole('ADMIN')}" styleClass="nav-link" value="Users" outcome="admin/user"/>
+                <h:link rendered="#{request.isUserInRole('ADMIN')}" styleClass="nav-link" value="Users" outcome="admin/users"/>
             </li>
             <li class="nav-item">
                 <h:form rendered="#{request.userPrincipal != null}">
-                    <h:commandButton action="#{todoController.logout()}" value="Logout #{request.userPrincipal.name}"/>
+                    <h:commandButton action="#{toDoController.logout()}" value="Logout #{request.userPrincipal.name}"/>
                 </h:form>
                 <h:link styleClass="nav-link"
                         rendered="#{request.userPrincipal == null}"
